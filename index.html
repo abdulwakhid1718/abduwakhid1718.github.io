@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body onload="getListSurah()" id="index">
+    <!-- As a heading -->
+    <nav class="navbar navbar-dark sticky-top" style="background-color: #33348f;">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <i class="bi bi-book"> </i>
+            <h5 class="d-inline m-1">Qur'an Digital</h5>
+          </a>
+        </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mt-3">
+          <h2 class="fw-bold">Qur'an Digital</h2>
+        </div>
+      </div>
+      <div class="row" id="list-surah"></div>
+<!--  <div class="card w-100 mt-3">
+        <div class="card-body">
+          <h6 class="card-title mb-2"><span class="badge bg-secondary">1</span> Al-baqarah ()</h6>
+          <h6 class="card-text fst-italic fw-light">"sapi betina"</h6>
+          <p class="text-muted">78 Ayat | Madinah</p>
+          <a href="bacaQuran.html?id=ra&g=u" class="btn btn-outline-danger btn-sm">Baca</a>
+          <a href="#" class="btn btn-danger btn-sm">Tafsir</a>
+        </div>
+      </div> -->
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="src/script.js"></script>
+</body>
+</html>
