@@ -1,9 +1,11 @@
+let api = 'https://api.quran.sutanlab.id/surah/'
+
 function getAjax(url) {
     return $.ajax({url: url, dataType: 'json', method: 'get'})
 }
 
 function getSurah(id) {
-    let surah = 'https://api.quran.sutanlab.id/surah/'+id+''
+    let surah = api+id
     getAjax(surah).done((result) => {
         let dataSurah = result.data
         console.log(dataSurah);
@@ -19,7 +21,7 @@ function getSurah(id) {
                     <div class="col-md-12">
                     <div class="card w-100 mt-3">
                         <div class="card-body p-4">
-                            <h5 class="card-title text-end pb-3 pt-2 lh-lg">`+params.text.arab+`</h5>
+                            <h5 class="card-title text-end pb-3 fs-2 pt-2 lh-lg">`+params.text.arab+`</h5>
                             <p class="fs-6 fw-normal fst-italic p-2"><span class="badge bg-secondary">`+ i +`</span> &nbsp;"`+params.translation.id+`"</p>
                             <audio controls preload="none" >
                                 <source src="`+params.audio.primary+`" type="audio/mpeg">
@@ -36,8 +38,24 @@ function getSurah(id) {
 }
 
 
+function getTafsir(id) {
+    
+    let a = $('.taf'+id).html()
+
+    if (a == '') {
+        getAjax(api+id).done( (data) => {
+            $('.taf'+id).html(data.data.tafsir.id)
+            $('.taf'+id).addClass('mb-3')
+        })
+    }else{
+        $('.taf'+id).html("")
+    }
+    
+}
+
+
 function getListSurah(){
-    getAjax('https://api.quran.sutanlab.id/surah').done((result) => {
+    getAjax(api).done((result) => {
         let arrSurah = result.data
         $.each(arrSurah, (i,surah) => {
             let surahID = surah.name.transliteration.id
@@ -54,15 +72,21 @@ function getListSurah(){
                         <h6 class="card-title mb-3"><span class="badge p-2 fs-4" style="background-color: #252772;">`+ noAyat +`</span> &nbsp;`+ surahID +` (`+ surahAR +`)</h6>
                         <h6 class="card-text fst-italic fw-light">"`+ artiSurah+`"</h6>
                         <p class="text-muted">`+ jumlahAyat +` Ayat | `+ turunSurah +`</p>
-                        <span class="btn btn-outline-danger btn-sm" id="`+surah.number+`" data-id = "`+surah.number+`">Baca</span>
-                        <a href="#" class="btn btn-danger btn-sm">Tafsir</a>
+                        <div class="taf`+surah.number+`"></div>
+                        <span class="btn btn-outline-danger btn-sm" id="baca-`+surah.number+`" data-id = "`+surah.number+`">Baca</span>
+                        <a href="#tafsir`+noAyat+`" class="btn btn-danger btn-sm" id="tafsir-`+surah.number+`" data-id = "`+surah.number+`">Tafsir</a>
                     </div>
                     </div>
                 </div>
                 `)
-                $('#'+surah.number+'').click(function () {
+                $('#baca-'+surah.number+'').click(function () {
                     let id = $(this).data('id')
                     getSurah(id)
+                })
+
+                $('#tafsir-'+surah.number+'').click(function () {
+                    let id = $(this).data('id')
+                    getTafsir(id)
                 })
             })
     })
